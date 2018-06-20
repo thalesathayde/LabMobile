@@ -1,8 +1,8 @@
 <?php
 
-    $dsn = "mysql:host = mysql.reunir.net.br;dbname=db_thales_uff;charset=utf8";
-    $usuario = "thales_uff";
-    $senha = "99059888";
+    $dsn = "mysql:host = localhost;dbname=teste;charset=utf8";
+    $usuario = "root";
+    $senha = "";
 
     try{
         $PDO = new PDO($dsn,$usuario,$senha);
