@@ -1,27 +1,24 @@
 <?php
-include "conexao.php";
+    include "conexao.php";
 
-$celular = $_POST['celular_app'];
-//$latitude = $_POST['lat_app'];
-//$longitude = $_POST["long_app"];
-//$latitude = $_POST["lat_app"];
+    $celular = $_POST['celular_app'];
+    //$senha = $_POST['senha_app'];
+    //$telefone =$_POST["telefone_app"];
 
-$sql_verifica = "SELECT latitude, longitude FROM Posicao WHERE celular = :CELULAR";
-$stmt = $PDO->prepare($sql_verifica);
-$stmt->bindParam(':CELULAR',$celular);
-$stmt->execute();
+    $sql_login = 'SELECT * FROM posicao WHERE celular = :CELULAR';
+    $stmt = $PDO->prepare($sql_login);
 
-if($stmt->rowCount()>0){
-    //ja tem posição anterior
+    $stmt->bindParam(':CELULAR',$celular);
+    //$stmt->bindParam(':SENHA',$senha);
+    $stmt->execute();
 
-    $result = $stmt->fetch();
-    $retornoApp = array("LATITUDE"=>$result["latitude"]);
-    $retornoApp = array("CADASTRO"=>$result["longitude"]);
-    
-}else{
-    //não tem latitude salva
-    $retornoApp = array("LATITUDE"=>"ERRO");
+    if($stmt->rowCount()> 0){
+        //achou
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        //print_r($user);
+        $retornoApp = $user;
+    }else{
+		$retornoApp = array("latitude"=>"ERRO");
 }
-
-echo json_encode($retornoApp);
+echo json_encode($retornoApp);   
 ?>

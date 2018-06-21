@@ -21,7 +21,7 @@ if($stmt->rowCount()> 0){
     $stmt->bindParam(':CELULAR',$tcelular);
 
     if($stmt->execute()){
-        $retornoApp = array("DISTANCIA"=>"UPDATE");
+        $retornoApp = array("DISTANCIA"=>"ATUALIZADA");
     }else{
         $retornoApp = array("DISTANCIA"=>"ERRO");
     }    
